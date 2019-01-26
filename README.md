@@ -1,0 +1,2 @@
+# cookiecutter-django-docker-swarm
+
