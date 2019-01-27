@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": true,
+    "[html]": {
+        "editor.formatOnSave": true
+    },
+    "python.pythonPath": "/Users/erin/.pyenv/versions/3.8-dev/bin/python"
+}

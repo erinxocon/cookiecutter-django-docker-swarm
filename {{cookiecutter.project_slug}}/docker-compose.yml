@@ -1,0 +1,51 @@
+version: "3"
+
+volumes:
+    local_postgres_data: {}
+    local_postgres_data_backups: {}
+
+services:
+    traefik:
+        image: traefik
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./docker/local/traefik/traefik.toml:/traefik.toml
+            - ./docker/local/traefik/traefik.log:/traefik.log
+            - ./docker/local/traefik/access.log:/access.log
+        ports:
+            - "80:80"
+            - "8080:8080"
+
+    django:
+        build:
+            context: .
+            dockerfile: ./docker/local/django/Dockerfile
+        image: {{cookiecutter.project_slug}}_local_django
+        depends_on:
+            - postgres
+            - mailhog
+            - traefik
+        volumes:
+            - .:/{{cookiecutter.project_slug}}
+            - ./docker/local/django/entrypoint:/entrypoint
+            - ./docker/local/django/start:/start
+        env_file:
+            - ./envs/local/django
+            - ./envs/local/postgres
+        labels:
+            - "traefik.port=8000"
+            - "traefik.frontend.rule=Host:forge.docker"
+        command: /start
+        stdin_open: true
+        tty: true
+
+    postgres:
+        build:
+            context: .
+            dockerfile: ./docker/local/postgres/Dockerfile
+        image: {{cookiecutter.project_slug}}_production_postgres
+        volumes:
+            - local_postgres_data:/var/lib/postgresql/data
+            - local_postgres_data_backups:/backups
+        env_file:
+            - ./envs/local/postgres

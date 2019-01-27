@@ -1,0 +1,32 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+Django = "==2.1.*"
+redis = "*"
+hiredis = "*"
+django-environ = "*"
+django-model-utils = "*"
+django-redis = "*"
+djangorestframework = "*"
+django-rest-swagger = "*"
+psycopg2-binary = "*"
+gunicorn = "*"
+coreapi = "*"
+
+
+[dev-packages]
+django-debug-toolbar = "*"
+django-extensions = "*"
+pytest-django = "*"
+pytest = "*"
+pytest-sugar = "*"
+
+
+[scripts]
+"reqs" = "bash -c \"pipenv lock -r > requirements.txt && pipenv lock -r --dev > requirements-dev.txt && echo '-r requirements.txt' >> requirements-dev.txt \""
+
+[requires]
+python_version = "3.7"

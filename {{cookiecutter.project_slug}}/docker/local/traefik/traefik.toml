@@ -1,0 +1,30 @@
+debug = true
+
+logLevel = "debug"
+defaultEntryPoints = ["http"]
+
+[api]
+entryPoint = "admin"
+dashboard = true
+
+[traefikLog]
+    filePath = "/traefik.log"
+    format   = "json"
+
+[accessLog]
+    filePath = "/access.log"
+    format = "json"
+
+[entryPoints]
+    [entryPoints.admin]
+    address = ":8080"
+
+    [entryPoints.http]
+    address = ":80"
+
+[retry]
+
+[docker]
+domain = "docker"
+watch = true
+# exposedByDefault = false
