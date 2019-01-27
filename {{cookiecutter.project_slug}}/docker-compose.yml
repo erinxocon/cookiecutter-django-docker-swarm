@@ -49,3 +49,9 @@ services:
             - local_postgres_data_backups:/backups
         env_file:
             - ./envs/local/postgres
+
+    mailhog:
+        image: mailhog/mailhog
+        labels:
+            - "traefik.port=8025"
+            - "traefik.frontend.rule=Host:mailhog.docker"

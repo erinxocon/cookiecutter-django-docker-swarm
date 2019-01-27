@@ -2,8 +2,7 @@
     "project_name": "My Awesome Project",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
     "description": "Behold My Awesome Project!",
-    "author_name": "Daniel Roy Greenfeld",
-    "domain_name": "example.com",
+    "author_name": "Erin O'Connell",
     "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
     "version": "0.1.0",
     "open_source_license": [
@@ -14,9 +13,9 @@
         "Not open source"
     ],
     "timezone": "UTC",
-    "windows": "n",
-    "use_pycharm": "n",
-    "use_docker": "n",
+    "admin_user": "admin",
+    "docker_host": "{{ cookiecutter.project_slug }}.local",
+    "domain_name": "example.com",
     "postgresql_version": [
         "10.5",
         "10.4",
@@ -28,16 +27,6 @@
         "9.4",
         "9.3"
     ],
-    "js_task_runner": ["None", "Gulp"],
-    "custom_bootstrap_compilation": "n",
-    "use_compressor": "n",
-    "use_celery": "n",
     "use_mailhog": "n",
-    "use_sentry": "n",
-    "use_whitenoise": "n",
-    "use_heroku": "n",
-    "use_travisci": "n",
-    "keep_local_envs_in_vcs": "y",
-
     "debug": "n"
 }

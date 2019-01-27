@@ -1,4 +1,4 @@
-FROM postgres:10.5
+FROM postgres:{{ cookiecutter.postgresql_version }}
 
 COPY ./docker/local/postgres/maintenance /usr/local/bin/maintenance
 RUN chmod +x /usr/local/bin/maintenance/*
