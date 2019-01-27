@@ -1,6 +1,6 @@
 # References:
 # https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
-FROM jetblackpope/pybuntu:3.6
+FROM jetblackpope/pybuntu:latest
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
@@ -30,9 +30,9 @@ RUN python -m pip install pip pipenv --upgrade
 RUN pipenv install --dev --system --deploy
 
 # change working directory to a mounted share, will get over-ridden from docker-comose
-WORKDIR /structureforge2
+WORKDIR /{{cookiecutter.project_slug}}
 
-VOLUME [ "/structureforge2", "/entrypoint", "/start" ]
+VOLUME [ "/{{cookiecutter.project_slug}}", "/entrypoint", "/start" ]
 
 # The following will likely get over-ridden by the docker-compose file
 # It runs the server on port 8000
